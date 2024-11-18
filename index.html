@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SKYLINE EXPRESS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            color: #333333; /* Text Color */
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('https://raw.githubusercontent.com/SKYLINE-12/SKYLINE-EXPRESS/main/BACKGROUND.jpg') no-repeat center center/cover;
+            overflow: hidden;
+        }
+
+        header img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%; /* Crops the logo into an oval */
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 3em;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #4CAF50; /* Primary Color */
+            margin: 0.2em 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .warning {
+            font-family: 'Lora', serif;
+            font-size: 1.8em;
+            color: #FFC107; /* Accent Color */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .warning::before, .warning::after {
+            content: "⚠️ ⚠️ ⚠️ ";
+        }
+
+        #countdown {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+            align-items: center;
+        }
+
+        .card {
+            font-family: 'Lora', serif;
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #FFFFFF; /* White Text */
+            background: linear-gradient(135deg, #FF7E5F, #FEB47B); /* Gradient Background */
+            border-radius: 10px;
+            width: 70px;
+            height: 90px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            transform-style: preserve-3d;
+            border: 2px solid #2196F3; /* Secondary Color */
+            transition: transform 0.5s;
+        }
+
+        .card.flip {
+            transform: rotateX(180deg);
+        }
+
+        .card span {
+            position: absolute;
+            transform: rotateX(0deg);
+            backface-visibility: hidden;
+        }
+
+        .colon {
+            font-family: 'Poppins', sans-serif;
+            font-size: 3em;
+            font-weight: bold;
+            color: #4CAF50; /* Primary Color */
+        }
+
+        p {
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.2em;
+            text-transform: uppercase;
+            margin: 10px;
+        }
+
+        .links {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .links a {
+            font-family: 'Poppins', sans-serif;
+            display: inline-block;
+            padding: 15px 25px;
+            font-size: 1.2em;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: white;
+            background: #2196F3; /* Secondary Color */
+            border-radius: 10px;
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .links a:hover {
+            transform: scale(1.1);
+            background: #FFC107; /* Accent Color */
+            color: #333333; /* Text Color */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="https://raw.githubusercontent.com/SKYLINE-12/SKYLINE-EXPRESS/main/logo.jpg" alt="SKYLINE EXPRESS LOGO">
+    </header>
+    <h1>SKYLINE EXPRESS</h1>
+    <p class="warning"><strong>URGENT:</strong> OUR WEBSITE IS UNDER MAINTENANCE UNTIL NOVEMBER 29TH, 2024, 11:00 PM (23:00).</p>
+    <div id="countdown">
+        <div class="card"><span id="days">00</span></div>
+        <div class="colon">:</div>
+        <div class="card"><span id="hours">00</span></div>
+        <div class="colon">:</div>
+        <div class="card"><span id="minutes">00</span></div>
+        <div class="colon">:</div>
+        <div class="card"><span id="seconds">00</span></div>
+    </div>
+    <p>FOR TRACKING ORDERS AND ASSISTANCE, PLEASE USE THE FOLLOWING LINKS:</p>
+    <div class="links">
+        <a href="https://t.me/SkylineExpress_bot" target="_blank">TRACK ORDERS</a>
+        <a href="https://t.me/SkyLineExpressSupport" target="_blank">CONTACT SUPPORT</a>
+    </div>
+    <script>
+        const targetDate = new Date("2024-11-29T23:00:00");
+        const cards = document.querySelectorAll(".card");
+
+        function flipCard(card, value) {
+            card.classList.add("flip");
+            setTimeout(() => {
+                card.querySelector("span").textContent = value;
+                card.classList.remove("flip");
+            }, 500);
+        }
+
+        function updateCountdown() {
+            const now = new Date();
+            const diff = targetDate - now;
+
+            if (diff <= 0) {
+                document.querySelector("#countdown").textContent = "MAINTENANCE IS OVER. REDIRECTING...";
+                setTimeout(() => {
+                    window.location.href = "https://t.me/SkylineExpress_bot";
+                }, 3000);
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((diff / (1000 * 60)) % 60);
+            const seconds = Math.floor((diff / 1000) % 60);
+
+            const values = [days, hours, minutes, seconds];
+            cards.forEach((card, index) => {
+                const current = parseInt(card.querySelector("span").textContent, 10);
+                if (current !== values[index]) {
+                    flipCard(card, String(values[index]).padStart(2, "0"));
+                }
+            });
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
