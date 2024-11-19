@@ -4,41 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SKYLINE EXPRESS</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Lora:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
             font-family: 'Roboto', sans-serif;
             color: #333333; /* Text Color */
             text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
             background: url('https://raw.githubusercontent.com/SKYLINE-12/SKYLINE-EXPRESS/main/BACKGROUND.jpg') no-repeat center center/cover;
             background-size: cover;
-            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh; /* Ensures full height on all devices */
+            padding: 20px; /* Prevents elements from touching screen edges */
+            box-sizing: border-box;
         }
 
         header img {
-            width: 100px;
-            height: 100px;
+            width: 150px;
+            height: 150px;
             border-radius: 50%; /* Crops the logo into an oval */
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            margin-bottom: 20px;
         }
 
         h1 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 2.5em;
-            font-weight: bold;
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 3em;
+            font-weight: 700;
             text-transform: uppercase;
-            color: #4CAF50; /* Primary Color */
-            margin: 0.2em 0;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            color: #0047AB; /* Dark Blue */
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6), 
+                         0 0 5px #9ea7b8, 
+                         0 0 10px #9ea7b8;
+            margin-bottom: 20px;
+            border: 2px solid transparent;
+            border-image: linear-gradient(to right, #FFD700, #C0C0C0);
+            border-image-slice: 1;
+            padding: 10px;
+            display: inline-block;
+            background: linear-gradient(to right, #9ea7b8, #e1e4e8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .warning {
@@ -46,6 +54,7 @@
             font-size: 1.2em;
             color: #FFC107; /* Accent Color */
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
         }
 
         .warning::before, .warning::after {
@@ -55,10 +64,9 @@
         #countdown {
             display: flex;
             justify-content: center;
-            gap: 5px;
-            margin: 15px 0;
-            align-items: center;
-            flex-wrap: wrap; /* Ensures boxes wrap on smaller screens */
+            flex-wrap: wrap; /* Ensures countdown boxes wrap on small screens */
+            gap: 10px;
+            margin-bottom: 20px;
         }
 
         .card {
@@ -69,14 +77,11 @@
             background: linear-gradient(135deg, #FF7E5F, #FEB47B); /* Gradient Background */
             border-radius: 10px;
             width: 60px;
-            height: 70px;
+            height: 80px;
             display: flex;
             justify-content: center;
             align-items: center;
-            position: relative;
-            transform-style: preserve-3d;
             border: 2px solid #2196F3; /* Secondary Color */
-            transition: transform 0.5s;
         }
 
         .colon {
@@ -84,20 +89,22 @@
             font-size: 2em;
             font-weight: bold;
             color: #4CAF50; /* Primary Color */
+            display: flex;
+            align-items: center;
         }
 
         p {
             font-family: 'Roboto', sans-serif;
             font-size: 1em;
             text-transform: uppercase;
-            margin: 5px 10px;
+            margin: 10px 0;
         }
 
         .links {
             display: flex;
+            flex-wrap: wrap; /* Ensures buttons stack on small screens */
             gap: 10px;
             justify-content: center;
-            flex-wrap: wrap; /* Ensures buttons stack on small screens */
             margin-top: 20px;
         }
 
@@ -113,7 +120,6 @@
             background: #2196F3; /* Secondary Color */
             border-radius: 10px;
             box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
-            position: relative;
             transition: all 0.3s ease-in-out;
         }
 
@@ -125,46 +131,49 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
+            header img {
+                width: 120px;
+                height: 120px;
+            }
+
             h1 {
-                font-size: 2em;
+                font-size: 2.5em;
             }
 
             .card {
                 width: 50px;
-                height: 60px;
+                height: 70px;
                 font-size: 1.5em;
             }
 
             .colon {
-                font-size: 1.8em;
+                font-size: 1.5em;
             }
 
             .links a {
                 padding: 10px 15px;
                 font-size: 0.9em;
             }
-
-            header img {
-                width: 80px;
-                height: 80px;
-                top: 5px;
-                left: 5px;
-            }
         }
 
         @media (max-width: 480px) {
+            header img {
+                width: 100px;
+                height: 100px;
+            }
+
             h1 {
-                font-size: 1.8em;
+                font-size: 2em;
             }
 
             .card {
                 width: 40px;
-                height: 50px;
+                height: 60px;
                 font-size: 1.2em;
             }
 
             .colon {
-                font-size: 1.5em;
+                font-size: 1.2em;
             }
 
             .links a {
@@ -198,14 +207,6 @@
         const targetDate = new Date("2024-11-29T23:00:00");
         const cards = document.querySelectorAll(".card");
 
-        function flipCard(card, value) {
-            card.classList.add("flip");
-            setTimeout(() => {
-                card.querySelector("span").textContent = value;
-                card.classList.remove("flip");
-            }, 500);
-        }
-
         function updateCountdown() {
             const now = new Date();
             const diff = targetDate - now;
@@ -223,13 +224,10 @@
             const minutes = Math.floor((diff / (1000 * 60)) % 60);
             const seconds = Math.floor((diff / 1000) % 60);
 
-            const values = [days, hours, minutes, seconds];
-            cards.forEach((card, index) => {
-                const current = parseInt(card.querySelector("span").textContent, 10);
-                if (current !== values[index]) {
-                    flipCard(card, String(values[index]).padStart(2, "0"));
-                }
-            });
+            document.getElementById("days").textContent = String(days).padStart(2, "0");
+            document.getElementById("hours").textContent = String(hours).padStart(2, "0");
+            document.getElementById("minutes").textContent = String(minutes).padStart(2, "0");
+            document.getElementById("seconds").textContent = String(seconds).padStart(2, "0");
         }
 
         updateCountdown();
